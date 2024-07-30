@@ -47,8 +47,6 @@ void Mesh::initPositionalData(const char* filename)
 
 		std::cout << x << ", " << y << ", " << z << "\n";
 
-		//ONE MORE TIME HAHAHA
-
 	}
 
 	OBJfile.close();

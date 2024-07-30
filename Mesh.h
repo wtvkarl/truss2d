@@ -16,13 +16,16 @@ class Mesh
 		//every single mesh has its own VAO
 		VAO VAO;
 
-		Mesh(std::vector <Vertex>& vertices, std::vector <GLuint> indices);
 		Mesh(const char* filename);
 
 		void Draw(Shader& shader);
 
 	private:
-		void initPositionalData(const char* filename);
+		void initVertexData(const char* filename);
+		void initIndexData(std::vector <Vertex> vertices);
+		void initBufferObjects();
+
+		
 };
 
 #endif // !MESH_CLASS_H

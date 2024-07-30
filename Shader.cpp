@@ -14,6 +14,7 @@ std::string getFileContents(const char* filename)
 		in.close();
 		return(contents);
 	}
+	printf("could not find shader file: %s", filename);
 	throw(errno);
 }
 

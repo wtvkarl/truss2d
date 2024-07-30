@@ -1,6 +1,6 @@
 #include "Mesh.h"
 
-void Mesh::initPositionalData(const char* filename)
+void Mesh::initVertexData(const char* filename)
 {
 	std::ifstream OBJfile(filename);
 
@@ -12,8 +12,8 @@ void Mesh::initPositionalData(const char* filename)
 
 	std::string line = "";
 	while (std::getline(OBJfile, line))
-	{
-		
+	{	
+
 		std::string content;
 		std::stringstream stream(line);
 		std::vector <std::string> data;
@@ -45,6 +45,11 @@ void Mesh::initPositionalData(const char* filename)
 		GLfloat y = (GLfloat)std::stof(data.at(1).c_str());
 		GLfloat z = (GLfloat)std::stof(data.at(2).c_str());
 
+		Vertex vertex;
+
+		vertex.color = glm::vec3(x, y, z);
+		vertices.push_back(vertex);
+
 		std::cout << x << ", " << y << ", " << z << "\n";
 
 	}
@@ -54,10 +59,88 @@ void Mesh::initPositionalData(const char* filename)
 
 Mesh::Mesh(const char* filename)
 {
-	initPositionalData(filename);
+	initVertexData(filename);
+	initIndexData(vertices);
+	initBufferObjects();
 }
 
-Mesh::Mesh(std::vector <Vertex>& vertices, std::vector <GLuint> indices)
+void Mesh::initIndexData(std::vector <Vertex> vertices)
 {
+	//6 faces, 2 triangles each, with 3 vertices each triangle
 
+	//0,1,2, 1,2,3
+	//0,2,4, 2,4,6
+	//4,5,6, 5,6,7
+	//1,3,5, 3,5,7
+	//2,3,6, 3,6,7
+	//0,1,4, 1,4,5
+
+	indices.push_back(0);
+	indices.push_back(1);
+	indices.push_back(2);
+
+	indices.push_back(1);
+	indices.push_back(2);
+	indices.push_back(3);
+
+	indices.push_back(0);
+	indices.push_back(2);
+	indices.push_back(4);
+
+	indices.push_back(2);
+	indices.push_back(4);
+	indices.push_back(6);
+
+	indices.push_back(4);
+	indices.push_back(5);
+	indices.push_back(6);
+
+	indices.push_back(5);
+	indices.push_back(6);
+	indices.push_back(7);
+
+	indices.push_back(1);
+	indices.push_back(3);
+	indices.push_back(5);
+
+	indices.push_back(3);
+	indices.push_back(5);
+	indices.push_back(7);
+
+	indices.push_back(2);
+	indices.push_back(3);
+	indices.push_back(6);
+
+	indices.push_back(3);
+	indices.push_back(6);
+	indices.push_back(7);
+
+	indices.push_back(0);
+	indices.push_back(1);
+	indices.push_back(4);
+
+	indices.push_back(1);
+	indices.push_back(4);
+	indices.push_back(5);
+}
+
+void Mesh::initBufferObjects()
+{
+	VAO.Bind();
+	VBO VBO(vertices);
+	EBO EBO(indices);
+	
+	VAO.LinkAttrib(VBO, 0, 3, GL_FLOAT, sizeof(Vertex), (void*)0);
+
+	VAO.Unbind();
+	VBO.Unbind();
+	EBO.Unbind();
+}
+
+void Mesh::Draw(Shader& shader)
+{
+	shader.Activate();
+	VAO.Bind();
+
+	glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
 }

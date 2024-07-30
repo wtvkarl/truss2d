@@ -47,6 +47,8 @@ void Mesh::initPositionalData(const char* filename)
 
 		std::cout << x << ", " << y << ", " << z << "\n";
 
+
+		//testing this for git pushes
 	}
 
 	OBJfile.close();

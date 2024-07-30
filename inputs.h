@@ -6,6 +6,6 @@
 
 static void key_callback(GLFWwindow* window, int key, int code, int action, int mods)
 {
-	std::cout << key << "\n";
+	
 }
 #endif // !INPUTS_H

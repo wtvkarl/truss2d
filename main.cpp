@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "inputs.h"
+#include "Mesh.h"
 
 static void error_callback(int error, const char* description)
 {
@@ -40,6 +41,8 @@ int main()
 	glfwMakeContextCurrent(window);
 	gladLoadGL();
 	glViewport(0, 0, 800, 800);
+
+	Mesh test("meshes/cube.obj");
 
 	while (!glfwWindowShouldClose(window))
 	{

@@ -45,9 +45,8 @@ void Mesh::initVertexData(const char* filename)
 		GLfloat y = (GLfloat)std::stof(data.at(1).c_str());
 		GLfloat z = (GLfloat)std::stof(data.at(2).c_str());
 
-		Vertex vertex;
+		Vertex vertex(x,y,z);
 
-		vertex.color = glm::vec3(x, y, z);
 		vertices.push_back(vertex);
 
 		std::cout << x << ", " << y << ", " << z << "\n";
@@ -60,11 +59,11 @@ void Mesh::initVertexData(const char* filename)
 Mesh::Mesh(const char* filename)
 {
 	initVertexData(filename);
-	initIndexData(vertices);
+	initIndexData();
 	initBufferObjects();
 }
 
-void Mesh::initIndexData(std::vector <Vertex> vertices)
+void Mesh::initIndexData()
 {
 	//6 faces, 2 triangles each, with 3 vertices each triangle
 
@@ -130,14 +129,17 @@ void Mesh::initBufferObjects()
 	VBO VBO(vertices);
 	EBO EBO(indices);
 	
+	//position data
 	VAO.LinkAttrib(VBO, 0, 3, GL_FLOAT, sizeof(Vertex), (void*)0);
+	//color data
+	VAO.LinkAttrib(VBO, 1, 3, GL_FLOAT, sizeof(Vertex), (void*)(3 * sizeof(float)));
 
 	VAO.Unbind();
 	VBO.Unbind();
 	EBO.Unbind();
 }
 
-void Mesh::Draw(Shader& shader)
+void Mesh::Draw(Shader shader)
 {
 	shader.Activate();
 	VAO.Bind();

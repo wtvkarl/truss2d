@@ -18,11 +18,11 @@ class Mesh
 
 		Mesh(const char* filename);
 
-		void Draw(Shader& shader);
+		void Draw(Shader shader);
 
 	private:
 		void initVertexData(const char* filename);
-		void initIndexData(std::vector <Vertex> vertices);
+		void initIndexData();
 		void initBufferObjects();
 
 		

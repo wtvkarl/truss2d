@@ -9,6 +9,14 @@ struct Vertex
 {
 	glm::vec3 position;
 	glm::vec3 color;
+
+	glm::vec3 defaultColor = glm::vec3(0.5f, 0.8f, 0.8f);
+
+	Vertex();
+	Vertex(GLfloat x, GLfloat y, GLfloat z);
+
+	void printPositionData();
+	void printColorData();
 };
 
 class VBO

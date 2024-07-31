@@ -1,1 +1,5 @@
-﻿  Truss Simulator 2D.vcxproj -> C:\Users\kvill\vscode\truss_simulation_2D\x64\Debug\Truss Simulator 2D.exe
+﻿  Mesh.cpp
+C:\Users\kvill\vscode\truss_simulation_2D\Truss Simulator 2D\Mesh.cpp(147,43): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  main.cpp
+  Generating Code...
+  Truss Simulator 2D.vcxproj -> C:\Users\kvill\vscode\truss_simulation_2D\x64\Debug\Truss Simulator 2D.exe

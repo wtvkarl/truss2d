@@ -3,7 +3,6 @@
 #include <iostream>
 
 #include "inputs.h"
-#include "Mesh.h"
 
 static void error_callback(int error, const char* description)
 {
@@ -42,16 +41,10 @@ int main()
 	gladLoadGL();
 	glViewport(0, 0, 800, 800);
 
-	Shader shaderProgram("shaders/default.vert", "shaders/default.frag");
-
-	Mesh test("meshes/cube.obj");
-
 	while (!glfwWindowShouldClose(window))
 	{
 		glClear(GL_COLOR_BUFFER_BIT);
 		glClearColor(0.4f, 0.2f, 0.5f, 1.0f);
-
-		test.Draw(shaderProgram);
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();

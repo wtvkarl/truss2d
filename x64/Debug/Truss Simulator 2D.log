@@ -1,18 +1,20 @@
-﻿  main.cpp
-C:\Users\kvill\vscode\truss_simulation_2D\Truss Simulator 2D\main.cpp(49,21): warning C4305: 'argument': truncation from 'double' to '_Ty'
+﻿  Mesh.cpp
+C:\Users\kvill\vscode\truss_simulation_2D\Truss Simulator 2D\Mesh.cpp(8,21): warning C4305: 'argument': truncation from 'double' to '_Ty'
           with
           [
               _Ty=GLfloat
           ]
-C:\Users\kvill\vscode\truss_simulation_2D\Truss Simulator 2D\main.cpp(56,21): warning C4305: 'argument': truncation from 'double' to '_Ty'
+C:\Users\kvill\vscode\truss_simulation_2D\Truss Simulator 2D\Mesh.cpp(15,21): warning C4305: 'argument': truncation from 'double' to '_Ty'
           with
           [
               _Ty=GLfloat
           ]
-C:\Users\kvill\vscode\truss_simulation_2D\Truss Simulator 2D\main.cpp(63,21): warning C4305: 'argument': truncation from 'double' to '_Ty'
+C:\Users\kvill\vscode\truss_simulation_2D\Truss Simulator 2D\Mesh.cpp(22,21): warning C4305: 'argument': truncation from 'double' to '_Ty'
           with
           [
               _Ty=GLfloat
           ]
-C:\Users\kvill\vscode\truss_simulation_2D\Truss Simulator 2D\main.cpp(95,44): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+C:\Users\kvill\vscode\truss_simulation_2D\Truss Simulator 2D\Mesh.cpp(50,43): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  main.cpp
+  Generating Code...
   Truss Simulator 2D.vcxproj -> C:\Users\kvill\vscode\truss_simulation_2D\x64\Debug\Truss Simulator 2D.exe

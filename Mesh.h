@@ -11,7 +11,7 @@ class Mesh
 {
 	public:
 		VAO meshVAO;
-		std::vector<GLfloat> vertices;
+		std::vector<Vertex> vertices;
 		std::vector<GLuint> indices;
 
 		Mesh(bool f);

@@ -36,14 +36,14 @@ int main()
 
 	Shader shaderProgram("shaders/default.vert", "shaders/default.frag");
 
-	Mesh test(false);
+	Mesh test = Mesh("meshes/cube.obj");
 
 	while (!glfwWindowShouldClose(window))
 	{
 		glClear(GL_COLOR_BUFFER_BIT);
 		glClearColor(0.4f, 0.2f, 0.5f, 1.0f);
 
-		test.Draw(shaderProgram);
+		//test.Draw(shaderProgram);
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();

@@ -1,12 +1,21 @@
 #version 330 core
 
-layout (location = 0) in vec3 position;
-layout (location = 1) in vec3 color;
+//Positions/Coordinates
+layout (location = 0) in vec3 aPos;
+// Colors
+layout (location = 1) in vec3 aColor;
 
-out vec3 colorOut;
+
+// Outputs the color for the Fragment Shader
+out vec3 color;
+// Controls the scale of the vertices
+uniform float scale;
+
 
 void main()
 {
-	gl_Position = vec4(position.x * 0.5, position.y * 0.5, position.z * 0.5, 1.0f);
-	colorOut = color;
+	// Outputs the positions/coordinates of all vertices
+	gl_Position = vec4(aPos.x + aPos.x * scale, aPos.y + aPos.y * scale, aPos.z + aPos.z * scale, 1.0);
+	// Assigns the colors from the Vertex Data to "color"
+	color = aColor;
 }

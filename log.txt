@@ -1,0 +1,19 @@
+7/28/2024:
+	- first commit
+	- created repo on github
+	- set up OpenGL API and libraries
+	- created main window and loop
+
+7/30/2024
+	- created shader, VAO, VBO and EBO classes
+	- created basic graphics pipeline
+
+8/2/2024
+	- fixed EBO bug
+	- successfully drew triangle on screen 
+	- created Vertex and Mesh classes
+	- started OBJ file reading feature
+
+8/4/2024
+	- created Rect2D class 
+	- program now able to draw multiple Rect2D objects with only one VAO and mesh

@@ -6,6 +6,7 @@
 #include "VAO.h"
 #include "VBO.h"
 #include "EBO.h"
+#include "Rect2D.h"
 
 #include <iostream>
 #include <fstream>
@@ -20,6 +21,7 @@ class Mesh
 		Mesh();
 		Mesh(const char* filename); //for obj files
 
+		void addRect(Rect2D rect);
 		void Draw(Shader& shader);
 	
 	private:

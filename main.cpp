@@ -4,6 +4,7 @@
 
 #include "inputs.h"
 #include "Mesh.h"
+#include "Rect2D.h"
 
 int main()
 {
@@ -36,14 +37,14 @@ int main()
 
 	Shader shaderProgram("shaders/default.vert", "shaders/default.frag");
 
-	Mesh test = Mesh("meshes/cube.obj");
+	Mesh test2 = Mesh();
 
 	while (!glfwWindowShouldClose(window))
 	{
 		glClear(GL_COLOR_BUFFER_BIT);
 		glClearColor(0.4f, 0.2f, 0.5f, 1.0f);
 
-		//test.Draw(shaderProgram);
+		test2.Draw(shaderProgram);
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();

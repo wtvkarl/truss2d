@@ -25,3 +25,41 @@ void VBO::Delete()
 {
 	glDeleteBuffers(1, &ID);
 }
+
+// -- VERTEX STRUCT FUNCTIONS //
+
+Vertex::Vertex(glm::vec3 pos, glm::vec3 col)
+{
+	position = pos;
+	color = col;
+}
+
+Vertex::Vertex(glm::vec3 pos)
+{
+	position = pos;
+	color = defaultColor;
+}
+
+Vertex::Vertex(glm::vec2 pos)
+{
+	position = glm::vec3(pos, 0);
+	color = defaultColor;
+}
+
+Vertex::Vertex(glm::vec2 pos, glm::vec3 col)
+{
+	position = glm::vec3(pos, 0);
+	color = col;
+}
+
+Vertex::Vertex(GLfloat x, GLfloat y)
+{
+	position = glm::vec3(x, y, 0);
+	color = defaultColor;
+}
+
+Vertex::Vertex(GLfloat x, GLfloat y, glm::vec3 col)
+{
+	position = glm::vec3(x, y, 0);
+	color = col;
+}

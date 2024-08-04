@@ -2,18 +2,15 @@
 
 Mesh::Mesh()
 {
-	//WOOO HOOO FINALLY GOT IT TO WORK (8/2/2024)
-	Vertex one(glm::vec3(0.5, -0.5, 0), glm::vec3(0.3, 0.5, 0.9));
-	Vertex two(glm::vec3(-0.5, -0.5, 0));
-	Vertex three(glm::vec3(0, 0, 0));
-
-	vertices.push_back(one);
-	vertices.push_back(two);
-	vertices.push_back(three);
+	Rect2D testRect(glm::vec2(300, 100), glm::vec2(345, 560));
+	addRect(testRect);
 
 	indices.push_back(0);
 	indices.push_back(1);
 	indices.push_back(2);
+	indices.push_back(1);
+	indices.push_back(2);
+	indices.push_back(3);
 
 	meshVAO.Bind();
 
@@ -86,23 +83,17 @@ void Mesh::loadOBJData(const char* filename)
 	objFile.close();
 }
 
+void Mesh::addRect(Rect2D rect)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		vertices.push_back(rect.points.at(i));
+	}
+}
+
 void Mesh::Draw(Shader& shader)
 {
 	shader.Activate();
 	meshVAO.Bind();
 	glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
-}
-
-// -- VERTEX STRUCT FUNCTIONS //
-
-Vertex::Vertex(glm::vec3 pos, glm::vec3 col)
-{
-	position = pos;
-	color = col;
-}
-
-Vertex::Vertex(glm::vec3 pos)
-{
-	position = pos;
-	color = defaultColor;
 }

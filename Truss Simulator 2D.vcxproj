@@ -151,6 +151,7 @@
     <ClCompile Include="glad.c" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Rect2D.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="VAO.cpp" />
     <ClCompile Include="VBO.cpp" />
@@ -159,6 +160,7 @@
     <ClInclude Include="EBO.h" />
     <ClInclude Include="inputs.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Rect2D.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="VAO.h" />
     <ClInclude Include="VBO.h" />

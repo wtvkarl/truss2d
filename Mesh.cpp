@@ -3,14 +3,9 @@
 Mesh::Mesh()
 {
 	Rect2D testRect(glm::vec2(300, 100), glm::vec2(345, 560));
+	Rect2D testRect2(glm::vec2(0, 0), glm::vec2(100, 225));
 	addRect(testRect);
-
-	indices.push_back(0);
-	indices.push_back(1);
-	indices.push_back(2);
-	indices.push_back(1);
-	indices.push_back(2);
-	indices.push_back(3);
+	addRect(testRect2);
 
 	meshVAO.Bind();
 
@@ -89,6 +84,23 @@ void Mesh::addRect(Rect2D rect)
 	{
 		vertices.push_back(rect.points.at(i));
 	}
+	updateIndices();
+	numRects++;
+}
+
+void Mesh::updateIndices()
+{
+	//each rect has 2 triangles, so 6 indices per rect2D. 
+	indices.push_back(numRects * 4);
+	indices.push_back(numRects * 4 + 1);
+	indices.push_back(numRects * 4 + 2);
+	indices.push_back(numRects * 4 + 1);
+	indices.push_back(numRects * 4 + 2);
+	indices.push_back(numRects * 4 + 3);
+
+	//for (GLuint i : indices)
+	//	std::cout << i << " ";
+	//std::cout << "\n";
 }
 
 void Mesh::Draw(Shader& shader)

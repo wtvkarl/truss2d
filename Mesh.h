@@ -14,6 +14,8 @@
 class Mesh
 {
 	public:
+		GLuint numRects = 0;
+
 		VAO meshVAO;
 		std::vector<Vertex> vertices;
 		std::vector<GLuint> indices;
@@ -26,6 +28,7 @@ class Mesh
 	
 	private:
 		void loadOBJData(const char* filename);
+		void updateIndices();
 };
 
 #endif // !MESH_CLASS_H

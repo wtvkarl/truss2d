@@ -17,3 +17,7 @@
 8/4/2024
 	- created Rect2D class 
 	- program now able to draw multiple Rect2D objects with only one VAO and mesh
+
+8/5/2024
+	- able to move around rectangles to specificed location
+	- able to set new colors for rectangles

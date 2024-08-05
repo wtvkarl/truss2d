@@ -3,9 +3,14 @@
 Mesh::Mesh()
 {
 	Rect2D testRect(glm::vec2(300, 100), glm::vec2(345, 560));
-	Rect2D testRect2(glm::vec2(0, 0), glm::vec2(100, 225));
+	
+
+	testRect.setColor(glm::vec3(0.7f, 0.5f, 0.3f));
+	testRect.setPosition(glm::vec2(45, 0));
+
 	addRect(testRect);
-	addRect(testRect2);
+
+
 
 	meshVAO.Bind();
 

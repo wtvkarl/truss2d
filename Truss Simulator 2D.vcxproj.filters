@@ -16,6 +16,9 @@
     <Filter Include="Resource Files\shaders">
       <UniqueIdentifier>{d222ed77-f984-453a-9ee3-f665beb07a6b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\notes">
+      <UniqueIdentifier>{a0bdf2d6-ef48-4684-87d7-9edc0842d97e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -73,5 +76,10 @@
     <None Include="shaders\default.vert">
       <Filter>Resource Files\shaders</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="log.txt">
+      <Filter>Source Files\notes</Filter>
+    </Text>
   </ItemGroup>
 </Project>

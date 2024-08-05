@@ -11,20 +11,27 @@ Rect2D::Rect2D(glm::vec2 pos, glm::vec2 dim)
 
 void Rect2D::normalize(glm::vec2 pos, glm::vec2 dim)
 {
+	normalizePosition(pos);
+	normalizeDimensions(dim);
 
+	printCoordinates();
+	printDimensions();	
+}
+
+void Rect2D::normalizePosition(glm::vec2 pos)
+{
 	GLfloat norm_x = (pos.x - 400) / 400;
 	GLfloat norm_y = (pos.y - 400) / -400;
 
 	position = glm::vec2(norm_x, norm_y);
+}
 
+void Rect2D::normalizeDimensions(glm::vec2 dim)
+{
 	width = dim.x / 400;
 	height = dim.y / 400;
 
 	dimensions = glm::vec2(width, height);
-		
-	printCoordinates();
-	printDimensions();
-	
 }
 
 void Rect2D::initVertices()
@@ -40,18 +47,28 @@ void Rect2D::initVertices()
 	points.push_back(bottomRight);
 }
 
-void Rect2D::setColor(GLfloat r, GLfloat g, GLfloat b)
+void Rect2D::setColor(glm::vec3 newCol)
 {
-	for (Vertex v : points)
-		v.color = glm::vec3(r, g, b);
+	//for some reason enhanced for-loops don't work aas expected
+	for (int i = 0; i < 4; i++)
+		points.at(i).setColor(newCol);
 }
 
 void Rect2D::setPosition(glm::vec2 newPos)
 {
-	for (Vertex v : points)
-	{
-		v.position = glm::vec3(newPos, 0);
-	}
+	normalizePosition(newPos);
+	
+	//after normalizing position vec2, we can use it regularly to 
+	//to reset the positions of each vertex.
+
+	//top left
+	points.at(0).setPosition(position);
+	//top right
+	points.at(1).setPosition(glm::vec2(position.x + width, position.y));
+	//bottom left
+	points.at(2).setPosition(glm::vec2(position.x, position.y - height));
+	//bottom right
+	points.at(3).setPosition(glm::vec2(position.x + width, position.y - height));
 }
 
 void Rect2D::printCoordinates()

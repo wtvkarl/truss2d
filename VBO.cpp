@@ -63,3 +63,13 @@ Vertex::Vertex(GLfloat x, GLfloat y, glm::vec3 col)
 	position = glm::vec3(x, y, 0);
 	color = col;
 }
+
+void Vertex::setColor(glm::vec3 newCol)
+{
+	color = newCol;
+}
+
+void Vertex::setPosition(glm::vec2 newPos)
+{
+	position = glm::vec3(newPos, 0);
+}

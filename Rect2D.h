@@ -18,13 +18,15 @@ class Rect2D
 
 		Rect2D(glm::vec2 pos, glm::vec2 dim);
 
-		void setColor(GLfloat r, GLfloat g, GLfloat b);
+		void setColor(glm::vec3 newCol);
 		void setPosition(glm::vec2 newPos);
 		void printCoordinates();
 		void printDimensions();
 
 	private:
 		void normalize(glm::vec2 pos, glm::vec2 dim);
+		void normalizePosition(glm::vec2 pos);
+		void normalizeDimensions(glm::vec2 dim);
 		void initVertices();
 };
 

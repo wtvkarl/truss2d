@@ -17,6 +17,11 @@ Simulator::Simulator()
 	std::cout << "SIMULATOR INITIALIZED -> MODE: NORMAL" << "\n";
 }
 
+void Simulator::update(GLFWwindow* window)
+{
+	updateInputs(window);
+}
+
 void Simulator::updateInputs(GLFWwindow* window)
 {
 	// -- check and change mode -- //
@@ -50,28 +55,29 @@ void Simulator::updateCursor(GLFWwindow* window)
 
 	GLFWcursor* cursor = NULL;
 
-	if(mode == NORMAL) {
+	if (mode == NORMAL) {
 		glfwSetCursor(window, NULL);
 		return;
 	}
-	else if(mode == PLACE) {
+	else if (mode == PLACE) {
 		pixels = stbi_load("res/imgs/place_cursor.png", &width, &height, &channels, 4);
 		image.width = width;
 		image.height = height;
 		image.pixels = pixels;
 		cursor = glfwCreateCursor(&image, 0, 0);
 	}
-	else if(mode ==  CONNECT) {
+	else if (mode == CONNECT) {
 		pixels = stbi_load("res/imgs/connect_cursor.png", &width, &height, &channels, 4);
 		image.width = width;
 		image.height = height;
 		image.pixels = pixels;
 		cursor = glfwCreateCursor(&image, 0, 0);
 	}
-	
+
 	glfwSetCursor(window, cursor);
-		
+
 }
+
 
 
 // -- MEMBER FUNCTIONS -- //

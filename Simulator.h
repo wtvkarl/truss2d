@@ -28,6 +28,7 @@ class Simulator
 		Simulator();
 
 		// -- inputs and cursor -- //
+		void update(GLFWwindow* window);
 		void updateInputs(GLFWwindow* window);
 		void updateCursor(GLFWwindow* window);
 			

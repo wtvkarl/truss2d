@@ -3,7 +3,6 @@
 #include <iostream>
 #include <stb/stb_image.h>
 
-#include "inputs.h"
 #include "Mesh.h"
 #include "Rect2D.h"
 #include "Simulator.h"
@@ -35,7 +34,6 @@ int main()
 	}
 
 	//all callbacks found in file -> "inputs.h"
-	glfwSetKeyCallback(window, key_callback);
 
 	//keep this in this exact order for initializing windows.
 	glfwMakeContextCurrent(window);
@@ -43,8 +41,6 @@ int main()
 	glViewport(0, 0, 800, 800);
 
 	Shader shaderProgram("shaders/default.vert", "shaders/default.frag");
-
-	Mesh test2 = Mesh();
 
 	Simulator sim = Simulator();
 
@@ -61,11 +57,10 @@ int main()
 			glClear(GL_COLOR_BUFFER_BIT);
 			glClearColor(0.18f, 0.38f, 0.47f, 1.0f);
 
-			test2.Draw(shaderProgram);
 			glfwSwapBuffers(window);
 		}
 
-		sim.updateInputs(window);
+		sim.update(window);
 		glfwPollEvents();
 	}
 

@@ -56,9 +56,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="inputs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="EBO.h">
       <Filter>Header Files</Filter>
     </ClInclude>

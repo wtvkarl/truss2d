@@ -160,7 +160,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EBO.h" />
-    <ClInclude Include="inputs.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Rect2D.h" />
     <ClInclude Include="Shader.h" />

@@ -19,6 +19,7 @@ class Rect2D
 		Rect2D(glm::vec2 pos, glm::vec2 dim);
 
 		void setColor(glm::vec3 newCol);
+		void setColorRGB(glm::vec3 newColRGB);
 		void setPosition(glm::vec2 newPos);
 		void printCoordinates();
 		void printDimensions();

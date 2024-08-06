@@ -28,6 +28,12 @@ void VBO::Delete()
 
 // -- VERTEX STRUCT FUNCTIONS //
 
+Vertex::Vertex()
+{
+	position = glm::vec3(0, 0, 0);
+	color = defaultColor;
+}
+
 Vertex::Vertex(glm::vec3 pos, glm::vec3 col)
 {
 	position = pos;

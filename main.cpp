@@ -1,10 +1,14 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
+#include <stb/stb_image.h>
 
 #include "inputs.h"
 #include "Mesh.h"
 #include "Rect2D.h"
+#include "Simulator.h"
+
+const double FPS_LIMIT = 60.0;
 
 int main()
 {
@@ -18,6 +22,9 @@ int main()
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_COMPAT_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+
+	//loadAssets();
 
 	GLFWwindow* window = glfwCreateWindow(800, 800, "Truss Simulator 2D (by karl villapacibe)", NULL, NULL);
 	if (!window)
@@ -39,14 +46,26 @@ int main()
 
 	Mesh test2 = Mesh();
 
+	Simulator sim = Simulator();
+
+	double lastTime = 0.0;
 	while (!glfwWindowShouldClose(window))
 	{
-		glClear(GL_COLOR_BUFFER_BIT);
-		glClearColor(0.4f, 0.2f, 0.5f, 1.0f);
+		double time = glfwGetTime();
+		double delta = time - lastTime;
 
-		test2.Draw(shaderProgram);
+		if (delta >= 1 / FPS_LIMIT)
+		{
+			lastTime = time;
 
-		glfwSwapBuffers(window);
+			glClear(GL_COLOR_BUFFER_BIT);
+			glClearColor(0.18f, 0.38f, 0.47f, 1.0f);
+
+			test2.Draw(shaderProgram);
+			glfwSwapBuffers(window);
+		}
+
+		sim.updateInputs(window);
 		glfwPollEvents();
 	}
 

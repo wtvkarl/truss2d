@@ -54,6 +54,12 @@ void Rect2D::setColor(glm::vec3 newCol)
 		points.at(i).setColor(newCol);
 }
 
+void Rect2D::setColorRGB(glm::vec3 newColRGB)
+{
+	for (int i = 0; i < 4; i++)
+		points.at(i).setColor(newColRGB / 255.0f);
+}
+
 void Rect2D::setPosition(glm::vec2 newPos)
 {
 	normalizePosition(newPos);

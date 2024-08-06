@@ -4,5 +4,7 @@ C:\Users\kvill\vscode\truss_simulation_2D\Truss Simulator 2D\main.cpp;C:\Users\k
 C:\Users\kvill\vscode\truss_simulation_2D\Truss Simulator 2D\Mesh.cpp;C:\Users\kvill\vscode\truss_simulation_2D\Truss Simulator 2D\x64\Debug\Mesh.obj
 C:\Users\kvill\vscode\truss_simulation_2D\Truss Simulator 2D\Rect2D.cpp;C:\Users\kvill\vscode\truss_simulation_2D\Truss Simulator 2D\x64\Debug\Rect2D.obj
 C:\Users\kvill\vscode\truss_simulation_2D\Truss Simulator 2D\Shader.cpp;C:\Users\kvill\vscode\truss_simulation_2D\Truss Simulator 2D\x64\Debug\Shader.obj
+C:\Users\kvill\vscode\truss_simulation_2D\Truss Simulator 2D\Simulator.cpp;C:\Users\kvill\vscode\truss_simulation_2D\Truss Simulator 2D\x64\Debug\Simulator.obj
+C:\Users\kvill\vscode\truss_simulation_2D\Truss Simulator 2D\stb.cpp;C:\Users\kvill\vscode\truss_simulation_2D\Truss Simulator 2D\x64\Debug\stb.obj
 C:\Users\kvill\vscode\truss_simulation_2D\Truss Simulator 2D\VAO.cpp;C:\Users\kvill\vscode\truss_simulation_2D\Truss Simulator 2D\x64\Debug\VAO.obj
 C:\Users\kvill\vscode\truss_simulation_2D\Truss Simulator 2D\VBO.cpp;C:\Users\kvill\vscode\truss_simulation_2D\Truss Simulator 2D\x64\Debug\VBO.obj

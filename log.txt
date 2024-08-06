@@ -21,3 +21,8 @@
 8/5/2024
 	- able to move around rectangles to specificed location
 	- able to set new colors for rectangles
+
+8/6/2024
+	- created simulator class
+	- able to load custom cursors and switch between them
+	- implemented place, connect and normal modes

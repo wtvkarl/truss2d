@@ -1,6 +1,3 @@
-﻿  Mesh.cpp
-C:\Users\kvill\vscode\truss_simulation_2D\Truss Simulator 2D\Mesh.cpp(115,43): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
-  Rect2D.cpp
-  main.cpp
-  Generating Code...
+﻿  Simulator.cpp
+C:\Users\kvill\vscode\truss_simulation_2D\Truss Simulator 2D\Simulator.cpp(92,18): warning C4244: 'return': conversion from 'double' to 'GLfloat', possible loss of data
   Truss Simulator 2D.vcxproj -> C:\Users\kvill\vscode\truss_simulation_2D\x64\Debug\Truss Simulator 2D.exe

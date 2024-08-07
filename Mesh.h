@@ -29,6 +29,7 @@ class Mesh
 	private:
 		void loadOBJData(const char* filename);
 		void updateIndices();
+		void updateBufferObjects();
 };
 
 #endif // !MESH_CLASS_H

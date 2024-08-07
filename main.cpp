@@ -2,6 +2,7 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 #include <stb/stb_image.h>
+#include <format>
 
 #include "Mesh.h"
 #include "Rect2D.h"
@@ -33,7 +34,7 @@ int main()
 		return -1;
 	}
 
-	//all callbacks found in file -> "inputs.h"
+	glfwSetCursorPosCallback(window, cursor_position_callback);
 
 	//keep this in this exact order for initializing windows.
 	glfwMakeContextCurrent(window);
@@ -57,6 +58,7 @@ int main()
 			glClear(GL_COLOR_BUFFER_BIT);
 			glClearColor(0.18f, 0.38f, 0.47f, 1.0f);
 
+			sim.render(shaderProgram);
 			glfwSwapBuffers(window);
 		}
 

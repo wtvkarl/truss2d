@@ -9,6 +9,9 @@
 
 enum MODE {NORMAL, PLACE, CONNECT};
 
+void cursor_position_callback(GLFWwindow* window, double xpos, double ypos);
+static GLfloat mouseX, mouseY;
+
 struct Member
 {
 	Vertex jointA, jointB;
@@ -22,6 +25,9 @@ class Simulator
 {
 	public:
 		MODE mode; 
+		bool placed;
+
+		Mesh mesh;
 		std::vector <Vertex> joints;
 		std::vector <Member> members;
 
@@ -29,8 +35,11 @@ class Simulator
 
 		// -- inputs and cursor -- //
 		void update(GLFWwindow* window);
-		void updateInputs(GLFWwindow* window);
+		void updateKeyInputs(GLFWwindow* window);
+		void updateMouseInputs(GLFWwindow* window);
 		void updateCursor(GLFWwindow* window);
+
+		void render(Shader shader);
 			
 };
 

@@ -2,29 +2,8 @@
 
 Mesh::Mesh()
 {
-	Rect2D testRect(glm::vec2(300, 100), glm::vec2(345, 560));
-
-	/*testRect.setColorRGB(glm::vec3(34, 144, 34));
-	testRect.setPosition(glm::vec2(45, 0));*/
-
-	addRect(testRect);
-
 	meshVAO.Bind();
-
-	VBO meshVBO(vertices);
-	EBO meshEBO(indices);
-
-	//connect vbo, # layout in shader?, how many components in each attribute?
-	//how far in bytes till next data, how far in bytes to jump from start to get to attribute?
-
-	//position
-	meshVAO.LinkAttrib(meshVBO, 0, 3, GL_FLOAT, sizeof(Vertex), (void*)0);
-	//color
-	meshVAO.LinkAttrib(meshVBO, 1, 3, GL_FLOAT, sizeof(Vertex), (void*)(3 * sizeof(float)));
-	
-	meshVAO.Unbind();
-	meshVBO.Unbind();
-	meshEBO.Unbind();
+	updateBufferObjects();
 }
 
 Mesh::Mesh(const char* filename)
@@ -88,6 +67,9 @@ void Mesh::addRect(Rect2D rect)
 	}
 	updateIndices();
 	numRects++;
+
+	//reinitializes the VBO and EBO, doesn't touch the VAO ever
+	updateBufferObjects();
 }
 
 void Mesh::updateIndices()
@@ -103,6 +85,24 @@ void Mesh::updateIndices()
 	//for (GLuint i : indices)
 	//	std::cout << i << " ";
 	//std::cout << "\n";
+}
+
+void Mesh::updateBufferObjects()
+{
+	VBO meshVBO(vertices);
+	EBO meshEBO(indices);
+
+	//connect vbo, # layout in shader?, how many components in each attribute?
+	//how far in bytes till next data, how far in bytes to jump from start to get to attribute?
+
+	//position
+	meshVAO.LinkAttrib(meshVBO, 0, 3, GL_FLOAT, sizeof(Vertex), (void*)0);
+	//color
+	meshVAO.LinkAttrib(meshVBO, 1, 3, GL_FLOAT, sizeof(Vertex), (void*)(3 * sizeof(float)));
+
+	meshVAO.Unbind();
+	meshVBO.Unbind();
+	meshEBO.Unbind();
 }
 
 void Mesh::Draw(Shader& shader)

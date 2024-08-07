@@ -1,3 +1,5 @@
 ﻿  Simulator.cpp
-C:\Users\kvill\vscode\truss_simulation_2D\Truss Simulator 2D\Simulator.cpp(98,18): warning C4244: 'return': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\kvill\vscode\truss_simulation_2D\Truss Simulator 2D\Simulator.cpp(12,11): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\kvill\vscode\truss_simulation_2D\Truss Simulator 2D\Simulator.cpp(13,11): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\kvill\vscode\truss_simulation_2D\Truss Simulator 2D\Simulator.cpp(143,18): warning C4244: 'return': conversion from 'double' to 'GLfloat', possible loss of data
   Truss Simulator 2D.vcxproj -> C:\Users\kvill\vscode\truss_simulation_2D\x64\Debug\Truss Simulator 2D.exe

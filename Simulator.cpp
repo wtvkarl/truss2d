@@ -6,6 +6,13 @@ int NORMAL_MODE_BIND = GLFW_KEY_W;
 int PLACE_MODE_BIND = GLFW_KEY_Q;
 int CONNECT_MODE_BIND = GLFW_KEY_E;
 
+// -- CURSOR POSITION CALLBACK -- //
+void cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
+{
+	mouseX = xpos;
+	mouseY = ypos;
+}
+
 // -- SIMULATOR FUNCTIONS -- //
 
 Simulator::Simulator()
@@ -14,34 +21,72 @@ Simulator::Simulator()
 	members = {};
 	mode = NORMAL;
 	
+	mesh = Mesh();
+
 	std::cout << "SIMULATOR INITIALIZED -> MODE: NORMAL" << "\n";
+}
+
+void Simulator::render(Shader shader)
+{
+	mesh.Draw(shader);
 }
 
 void Simulator::update(GLFWwindow* window)
 {
-	updateInputs(window);
+	updateKeyInputs(window);
+	updateMouseInputs(window);
 }
 
-void Simulator::updateInputs(GLFWwindow* window)
+void Simulator::updateKeyInputs(GLFWwindow* window)
 {
 	// -- check and change mode -- //
 	if (glfwGetKey(window, NORMAL_MODE_BIND))
 	{
+		if (mode == NORMAL)
+			return;
+
 		std::cout << "SELECTED MODE: NORMAL" << "\n";
 		mode = NORMAL;
 		updateCursor(window);
 	}
 	else if (glfwGetKey(window, PLACE_MODE_BIND))
 	{
+		if (mode == PLACE)
+			return;
+
 		std::cout << "SELECTED MODE: PLACE" << "\n";
 		mode = PLACE;
 		updateCursor(window);
 	}
 	else if (glfwGetKey(window, CONNECT_MODE_BIND))
 	{
+		if (mode == CONNECT)
+			return;
+
 		std::cout << "SELECTED MODE: CONNECT" << "\n";
 		mode = CONNECT;
 		updateCursor(window);
+	}
+}
+
+void Simulator::updateMouseInputs(GLFWwindow* window)
+{
+	//these two "if blocks" make sure that the input is only counted once
+	//even if the mouse button is held down
+	int isPressed = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS;
+	if (isPressed && !placed)
+	{
+		if (mode == PLACE)
+		{
+			//printf("Mouse Position: [%.2f, %.2f]\n", mouseX, mouseY);
+
+			mesh.addRect(Rect2D(glm::vec2(mouseX, mouseY), glm::vec2(20, 20)));
+			placed = true;
+		}
+	}
+	if (!isPressed && placed)
+	{
+		placed = false;
 	}
 }
 

@@ -6,6 +6,14 @@ int NORMAL_MODE_BIND = GLFW_KEY_W;
 int PLACE_MODE_BIND = GLFW_KEY_Q;
 int CONNECT_MODE_BIND = GLFW_KEY_E;
 
+glm::vec2 getScreenCoords(GLfloat x, GLfloat y)
+{
+	return glm::vec2(
+		(x - 400) / 400,
+		(y - 400) / -400
+	);
+}
+
 // -- CURSOR POSITION CALLBACK -- //
 void cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
 {
@@ -26,6 +34,8 @@ Simulator::Simulator()
 	std::cout << "SIMULATOR INITIALIZED -> MODE: NORMAL" << "\n";
 }
 
+// -- MAIN FUNCTIONS -- //
+
 void Simulator::render(Shader shader)
 {
 	mesh.Draw(shader);
@@ -35,7 +45,14 @@ void Simulator::update(GLFWwindow* window)
 {
 	updateKeyInputs(window);
 	updateMouseInputs(window);
+
+	if (mode == CONNECT)
+	{
+		highlightNearestBox(mesh, mouseX, mouseY);
+	}
 }
+
+// -- INPUT FUNCTIONS -- //
 
 void Simulator::updateKeyInputs(GLFWwindow* window)
 {
@@ -91,7 +108,7 @@ void Simulator::updateMouseInputs(GLFWwindow* window)
 }
 
 void Simulator::updateCursor(GLFWwindow* window)
-{
+{  
 	//better to use regular if statements rather than switch statement here
 
 	int width, height, channels;
@@ -121,6 +138,31 @@ void Simulator::updateCursor(GLFWwindow* window)
 
 	glfwSetCursor(window, cursor);
 
+}
+
+void Simulator::highlightNearestBox(Mesh mesh, GLfloat mx, GLfloat my)
+{
+	if (mesh.rects.empty())
+		return;
+
+	GLfloat minDist = 1000000000;
+
+	//normalize the mouse cursor position vector
+	glm::vec2 mousePos = getScreenCoords(mouseX, mouseY);
+	
+	for (Rect2D rect : mesh.rects)
+	{
+		GLfloat dx = std::abs(rect.position.x - mousePos.x);
+		GLfloat dy = std::abs(rect.position.y - mousePos.y);
+
+		GLfloat dist = std::sqrt(dx * dx + dy * dy);
+		if (dist < minDist)
+		{
+			minDist = dist;
+		}
+	}
+
+	std::cout << minDist << "\n";
 }
 
 

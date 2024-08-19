@@ -17,6 +17,7 @@ class Mesh
 		GLuint numRects = 0;
 
 		VAO meshVAO;
+		std::vector<Rect2D> rects;
 		std::vector<Vertex> vertices;
 		std::vector<GLuint> indices;
 

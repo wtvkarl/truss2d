@@ -26,3 +26,7 @@
 	- created simulator class
 	- able to load custom cursors and switch between them
 	- implemented place, connect and normal modes
+
+8/7/2024
+	- changed mesh class to have ability to draw new rects where the cursor is
+	- implemented my own single input instead of using callbacks

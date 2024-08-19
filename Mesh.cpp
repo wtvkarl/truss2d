@@ -61,6 +61,7 @@ void Mesh::loadOBJData(const char* filename)
 
 void Mesh::addRect(Rect2D rect)
 {
+	rects.push_back(rect);
 	for (int i = 0; i < 4; i++)
 	{
 		vertices.push_back(rect.points.at(i));

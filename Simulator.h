@@ -39,6 +39,9 @@ class Simulator
 		void updateMouseInputs(GLFWwindow* window);
 		void updateCursor(GLFWwindow* window);
 
+		//-- connect mode detection -- //
+		void highlightNearestBox(Mesh mesh, GLfloat mx, GLfloat my);
+
 		void render(Shader shader);
 			
 };

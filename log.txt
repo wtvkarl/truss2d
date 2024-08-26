@@ -30,3 +30,11 @@
 8/7/2024
 	- changed mesh class to have ability to draw new rects where the cursor is
 	- implemented my own single input instead of using callbacks
+
+8/19/2024
+	- created closest rectangle detection
+	- need to add highlighting and accessing rect objects.
+
+8/26/2024
+	- improved closest rect detection
+	- created png texture for selection

@@ -40,7 +40,7 @@ class Simulator
 		void updateCursor(GLFWwindow* window);
 
 		//-- connect mode detection -- //
-		void highlightNearestBox(Mesh mesh, GLfloat mx, GLfloat my);
+		glm::vec2 highlightNearestBox(Mesh mesh, GLfloat mx, GLfloat my);
 
 		void render(Shader shader);
 			

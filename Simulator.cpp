@@ -48,7 +48,12 @@ void Simulator::update(GLFWwindow* window)
 
 	if (mode == CONNECT)
 	{
-		highlightNearestBox(mesh, mouseX, mouseY);
+		if (!mesh.rects.empty()) {
+			glm::vec2 closestRect = highlightNearestBox(mesh, mouseX, mouseY);
+			printf("Closest Rect Coords: [%.2f, %.2f]\n", closestRect.x, closestRect.y);
+
+			
+		}
 	}
 }
 
@@ -140,29 +145,31 @@ void Simulator::updateCursor(GLFWwindow* window)
 
 }
 
-void Simulator::highlightNearestBox(Mesh mesh, GLfloat mx, GLfloat my)
+glm::vec2 Simulator::highlightNearestBox(Mesh mesh, GLfloat mx, GLfloat my)
 {
-	if (mesh.rects.empty())
-		return;
-
 	GLfloat minDist = 1000000000;
+	glm::vec2 coords(0, 0);
 
 	//normalize the mouse cursor position vector
 	glm::vec2 mousePos = getScreenCoords(mouseX, mouseY);
 	
-	for (Rect2D rect : mesh.rects)
+	for (int i = 0; i < mesh.rects.size(); i++)
 	{
-		GLfloat dx = std::abs(rect.position.x - mousePos.x);
-		GLfloat dy = std::abs(rect.position.y - mousePos.y);
+		GLfloat dx = std::abs(mesh.rects.at(i).position.x - mousePos.x);
+		GLfloat dy = std::abs(mesh.rects.at(i).position.y - mousePos.y);
 
 		GLfloat dist = std::sqrt(dx * dx + dy * dy);
 		if (dist < minDist)
 		{
 			minDist = dist;
+			coords.x = mesh.rects.at(i).position.x;
+			coords.y = mesh.rects.at(i).position.y;
 		}
 	}
-
+	//this returns the distance to the closest rect, just need to ACCESS the rect now. 
 	std::cout << minDist << "\n";
+
+	return coords;
 }
 
 

@@ -49,7 +49,7 @@ void Rect2D::initVertices()
 
 void Rect2D::setColor(glm::vec3 newCol)
 {
-	//for some reason enhanced for-loops don't work aas expected
+	//for some reason enhanced for-loops don't work as expected
 	for (int i = 0; i < 4; i++)
 		points.at(i).setColor(newCol);
 }

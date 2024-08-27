@@ -2,20 +2,14 @@
 
 
 //position of rectangle is set to the top left corner
+//constructor that normalizes position and dimensions
 Rect2D::Rect2D(glm::vec2 pos, glm::vec2 dim)
 {
+	screenSpacePosition = pos;
 	//these are screenspace coordinates that need to be normalized
-	normalize(pos, dim);
-	initVertices();
-}
-
-void Rect2D::normalize(glm::vec2 pos, glm::vec2 dim)
-{
 	normalizePosition(pos);
 	normalizeDimensions(dim);
-
-	printCoordinates();
-	printDimensions();	
+	initVertices();
 }
 
 void Rect2D::normalizePosition(glm::vec2 pos)
@@ -23,7 +17,7 @@ void Rect2D::normalizePosition(glm::vec2 pos)
 	GLfloat norm_x = (pos.x - 400) / 400;
 	GLfloat norm_y = (pos.y - 400) / -400;
 
-	position = glm::vec2(norm_x, norm_y);
+	normalizedPosition = glm::vec2(norm_x, norm_y);
 }
 
 void Rect2D::normalizeDimensions(glm::vec2 dim)
@@ -36,10 +30,10 @@ void Rect2D::normalizeDimensions(glm::vec2 dim)
 
 void Rect2D::initVertices()
 {
-	Vertex topLeft(position.x, position.y);
-	Vertex topRight(position.x + width, position.y);
-	Vertex bottomLeft(position.x, position.y - height);
-	Vertex bottomRight(position.x + width, position.y - height);
+	Vertex topLeft(normalizedPosition.x, normalizedPosition.y);
+	Vertex topRight(normalizedPosition.x + width, normalizedPosition.y);
+	Vertex bottomLeft(normalizedPosition.x, normalizedPosition.y - height);
+	Vertex bottomRight(normalizedPosition.x + width, normalizedPosition.y - height);
 
 	points.push_back(topLeft);
 	points.push_back(topRight);
@@ -68,18 +62,18 @@ void Rect2D::setPosition(glm::vec2 newPos)
 	//to reset the positions of each vertex.
 
 	//top left
-	points.at(0).setPosition(position);
+	points.at(0).setPosition(normalizedPosition);
 	//top right
-	points.at(1).setPosition(glm::vec2(position.x + width, position.y));
+	points.at(1).setPosition(glm::vec2(normalizedPosition.x + width, normalizedPosition.y));
 	//bottom left
-	points.at(2).setPosition(glm::vec2(position.x, position.y - height));
+	points.at(2).setPosition(glm::vec2(normalizedPosition.x, normalizedPosition.y - height));
 	//bottom right
-	points.at(3).setPosition(glm::vec2(position.x + width, position.y - height));
+	points.at(3).setPosition(glm::vec2(normalizedPosition.x + width, normalizedPosition.y - height));
 }
 
 void Rect2D::printCoordinates()
 {
-	printf("Normalized Coordinates: [%.2f, %.2f]\n", position.x, position.y);
+	printf("Normalized Coordinates: [%.2f, %.2f]\n", normalizedPosition.x, normalizedPosition.y);
 }
 
 void Rect2D::printDimensions()

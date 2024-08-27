@@ -11,7 +11,8 @@ class Rect2D
 		std::vector <Vertex> points = {};
 
 		//these are all normalized first
-		glm::vec2 position;
+		glm::vec2 normalizedPosition;
+		glm::vec2 screenSpacePosition;
 		glm::vec2 dimensions;
 		GLfloat width;
 		GLfloat height;
@@ -25,7 +26,6 @@ class Rect2D
 		void printDimensions();
 
 	private:
-		void normalize(glm::vec2 pos, glm::vec2 dim);
 		void normalizePosition(glm::vec2 pos);
 		void normalizeDimensions(glm::vec2 dim);
 		void initVertices();

@@ -48,11 +48,13 @@ void Simulator::update(GLFWwindow* window)
 
 	if (mode == CONNECT)
 	{
-		if (!mesh.rects.empty()) {
+		if (!mesh.rects.empty())
+		{
 			glm::vec2 closestRect = highlightNearestBox(mesh, mouseX, mouseY);
 			printf("Closest Rect Coords: [%.2f, %.2f]\n", closestRect.x, closestRect.y);
-
-			
+			Rect2D testRect(closestRect, glm::vec2(20, 20));
+			testRect.setColorRGB(glm::vec3(124, 124, 45));
+			mesh.addRect(testRect);
 		}
 	}
 }
@@ -120,8 +122,6 @@ void Simulator::updateCursor(GLFWwindow* window)
 	unsigned char* pixels;
 	GLFWimage image;
 
-	GLFWcursor* cursor = NULL;
-
 	if (mode == NORMAL) {
 		glfwSetCursor(window, NULL);
 		return;
@@ -131,16 +131,15 @@ void Simulator::updateCursor(GLFWwindow* window)
 		image.width = width;
 		image.height = height;
 		image.pixels = pixels;
-		cursor = glfwCreateCursor(&image, 0, 0);
 	}
 	else if (mode == CONNECT) {
 		pixels = stbi_load("res/imgs/connect_cursor.png", &width, &height, &channels, 4);
 		image.width = width;
 		image.height = height;
 		image.pixels = pixels;
-		cursor = glfwCreateCursor(&image, 0, 0);
 	}
 
+	GLFWcursor* cursor = glfwCreateCursor(&image, 0, 0);
 	glfwSetCursor(window, cursor);
 
 }
@@ -155,15 +154,16 @@ glm::vec2 Simulator::highlightNearestBox(Mesh mesh, GLfloat mx, GLfloat my)
 	
 	for (int i = 0; i < mesh.rects.size(); i++)
 	{
-		GLfloat dx = std::abs(mesh.rects.at(i).position.x - mousePos.x);
-		GLfloat dy = std::abs(mesh.rects.at(i).position.y - mousePos.y);
+		GLfloat dx = std::abs(mesh.rects.at(i).normalizedPosition.x - mousePos.x);
+		GLfloat dy = std::abs(mesh.rects.at(i).normalizedPosition.y - mousePos.y);
 
 		GLfloat dist = std::sqrt(dx * dx + dy * dy);
 		if (dist < minDist)
 		{
+			//we return the screen space coords since the rect is initialized next
 			minDist = dist;
-			coords.x = mesh.rects.at(i).position.x;
-			coords.y = mesh.rects.at(i).position.y;
+			coords.x = mesh.rects.at(i).screenSpacePosition.x;
+			coords.y = mesh.rects.at(i).screenSpacePosition.y;
 		}
 	}
 	//this returns the distance to the closest rect, just need to ACCESS the rect now. 
